@@ -16,6 +16,7 @@
 .flex-column-secondary{
   display: flex;
   width: 20vw;
+  flex-direction: column;
 }
 
 .card{
