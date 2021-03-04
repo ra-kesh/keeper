@@ -1,3 +1,5 @@
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 
 const ViewNotes = (props) => (
 
@@ -6,17 +8,26 @@ const ViewNotes = (props) => (
         { props.notes.length>0 ? (
                 props.notes.map((note)=>(
                     <div className="card" key={note.id}>
-                        <h3>{note.title}</h3>
-                        <h5>{note.body}</h5>
-                        <h6>{note.tag}</h6>
+                        <span className="card-title">{note.title}</span>
+                        <p className="card-body">{note.body}</p>
 
-                        <button onClick={()=>
-                        props.editNote(note)}
-                        >edit</button>
+                        <div className="card-row">
+                            {(note.tag !==null)&&(<span className="card-tag">{note.tag}</span>)}
+                            
+                            <div>
+                                <span onClick={()=>
+                                props.editNote(note)}
+                                ><EditOutlinedIcon fontSize="small"/></span>
 
-                        <button  onClick={() => 
-                        props.deleteNote(note.id)}>
-                        delete</button>
+                                <span  onClick={() => 
+                                props.deleteNote(note.id)}
+                                className="card-icon"
+                                ><DeleteOutlineOutlinedIcon fontSize="small"/></span>
+                            </div>
+                           
+                        </div>
+
+                       
                     </div>
                 ))
             ):(

@@ -42,14 +42,14 @@ const AddNotesForm = (props) => {
 
         {expanded && (
           <div className="form-items-secondary">
-          <select name="tag" value={note.tag} onChange={changeHandeller} className="form-select">
-            <option hidden>Add Label..</option>
-            {props.tags.map((tag)=>(
-              <option key={tag.id}  >{tag.name}</option>
-            ))}
-            
-          </select>
-          <button className='form-button' onClick={closeHandeller}>Close</button>
+            <select name="tag" value={note.tag} onChange={changeHandeller} className="form-select">
+              <option hidden>Add Label..</option>
+              {props.tags.map((tag)=>(
+                <option key={tag.id}  >{tag.name}</option>
+              ))}
+              
+            </select>
+            <button className='form-button' onClick={closeHandeller}>Close</button>
          </div>
         )}
       </form>
