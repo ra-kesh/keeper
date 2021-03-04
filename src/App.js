@@ -87,8 +87,12 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-          <h1>keeper</h1>
-          <hr/>
+          <div className="header">
+              <div className="header-item">
+                <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="" srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x "/>
+                <span className="nav-brand">Keep</span>
+              </div>
+          </div>
           <div className="flex-row">
               <div className='flex-column-secondary'>
                 <ViewTags tags={tags} 

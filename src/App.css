@@ -2,6 +2,30 @@
   text-align: center;
 }
 
+.header{
+  display: flex;
+  padding: .2rem;
+  box-shadow: 0 0 2px 0 rgb(110, 110, 110);
+  margin-bottom: 1rem;
+  /* justify-content: space-around; */
+}
+
+.header-item{
+  display: flex;
+  margin-left: 5rem;
+  align-items: center;
+}
+
+.nav-brand{
+  display: inline-block;
+  font-family: 'Product Sans',Arial,sans-serif;
+  font-size: 1.5rem;
+  padding-left: .5rem;
+  font-weight: 500;
+  opacity: 70%;
+}
+
+
 .flex-row{
   display: flex;
   flex-direction: row;
@@ -20,15 +44,18 @@
 }
 
 .card{
-  border: 1px solid black;
+  border: 1px solid;
+  border-radius: 8px;
   padding: 1rem;
   margin : 1rem;
   width: 25%;
   display: flex;
   flex-direction: column;
-  
   justify-content: flex-start;
   align-items: flex-start;
+  height: fit-content;
+  border-color: #e0e0e0;
+  /* box-shadow: 0 2px 5px rgb(175, 175, 175); */
 }
 
 .cards{
@@ -40,12 +67,15 @@
 .flex-form{
   display: flex;
   flex-direction: column;
-  border-radius: 7px;
+  border-radius: 5px;
   box-shadow: 0 1px 7px rgb(128, 128, 128);
   padding: 1rem;
   margin: auto;
-  max-width: 50vw;
+  max-width: 40vw;
   position: relative;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 .form-items{
@@ -55,6 +85,7 @@
   outline: none;
   resize: none;
   opacity: 90%;  
+  background-color: white;
 }
 
 .form-items:focus::placeholder{
@@ -63,18 +94,54 @@
 
 .form-input{
   font-family: 'Google Sans',Roboto,Arial,sans-serif;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 550;
   line-height: 1.5rem;
 }
 
 .form-textarea{
   font-family: Roboto,Arial,sans-serif;
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: 550;
+  margin: 0;
 }
 
 .form-items-secondary{
   display: flex;
   justify-content: space-between;
+}
+
+.form-button{
+  border: solid transparent;
+  border-radius: 8px;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 550;
+  background-color :white;
+  opacity: 70%;
+  padding: .5rem 1.5rem;
+  cursor: pointer;
+}
+.form-button:hover{
+  background-color:rgba(0,0,0, .1 );
+}
+.form-button:focus{
+  outline: none;
+}
+
+.form-select{
+  border: 0px solid transparent;
+  outline: 0px;
+  border-radius: 8px;
+  padding: .5rem .8rem ;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-weight: 550;
+  opacity: 60%;
+}
+.form-select:hover{
+  background-color:rgba(0,0,0, .1 );
+}
+.form-select option{
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-weight: 550;
 }
