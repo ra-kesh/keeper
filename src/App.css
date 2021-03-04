@@ -40,8 +40,41 @@
 .flex-form{
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border-radius: 7px;
+  box-shadow: 0 1px 7px rgb(128, 128, 128);
   padding: 1rem;
   margin: auto;
   max-width: 50vw;
+  position: relative;
+}
+
+.form-items{
+  width: 100%;
+  border: none;
+  margin : 0 0 1rem;
+  outline: none;
+  resize: none;
+  opacity: 90%;  
+}
+
+.form-items:focus::placeholder{
+  color: transparent;
+}
+
+.form-input{
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 550;
+  line-height: 1.5rem;
+}
+
+.form-textarea{
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .875rem;
+  font-weight: 550;
+}
+
+.form-items-secondary{
+  display: flex;
+  justify-content: space-between;
 }

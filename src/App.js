@@ -19,10 +19,10 @@ function App() {
   const [notes, setNotes] = useState(notesData);
   const [editing, setEditing] = useState(false);
   const [currentNote, setCurrentNote] = useState(initialState);
-  const [tags,setTags] = useState(tagsData);
-  const [currentTag,setCurrentTag] = useState(initialTagState)
   const [filtering,setFiltering] = useState(false);
   const [filteredNotes,setFilteredNotes] = useState([]);
+  const [tags,setTags] = useState(tagsData);
+  const [currentTag,setCurrentTag] = useState(initialTagState)
   const [tagEditing,setTagEditing] = useState(false);
 
   // crud note
