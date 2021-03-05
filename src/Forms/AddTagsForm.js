@@ -1,5 +1,6 @@
 import {useState} from 'react';
 
+
 const AddTagsForm = (props) => {
     const initialState = { id: null, name: ''}
 
@@ -22,7 +23,7 @@ const AddTagsForm = (props) => {
 
     return (
       <form onSubmit={submitHandeller}>
-        <input type="text" name="name" value={tag.name} onChange={changeHandeller}/>
+        <input type="text" name="name" value={tag.name} onChange={changeHandeller} placeholder="Add new label.." className="tag-form"/>
       </form>
     )
   }

@@ -1,5 +1,8 @@
 import './App.css';
 import { useState } from 'react'
+import {v4} from 'uuid';
+
+import Header from './Header/Header'
 import ViewNotes from './Notes/ViewNotes'
 import AddNotesForm from './Forms/AddNotesForm'
 import EditNotesForm from './Forms/EditNotesForm'
@@ -22,25 +25,33 @@ function App() {
   const [currentNote, setCurrentNote] = useState(initialState);
   const [filtering,setFiltering] = useState(false);
   const [filteredNotes,setFilteredNotes] = useState([]);
+  const [deletedNotes,setDeletedNotes] = useState([]);
+  const [viewTrash,setViewTrash] = useState(false);
+  
+
+
+  
   const [tags,setTags] = useState(tagsData);
-  const [currentTag,setCurrentTag] = useState(initialTagState)
+  const [currentTag,setCurrentTag] = useState(initialTagState);
   const [tagEditing,setTagEditing] = useState(false);
 
   // crud note
 
   const addNote = (note) => {
-    note.id = notes.length + 1
+    note.id = v4();
     setNotes([...notes, note])
   }
 
-  const deleteNote = id => {
+  const deleteNote = (id,note) => {
 		setEditing(false)
+    setDeletedNotes([...deletedNotes,note]);
 		setNotes(notes.filter(note => note.id !== id))
+
 	}
 
   const editNote = note =>{
     setEditing(true)
-    setCurrentNote({ id: note.id, title: note.title, body: note.body , tag : note.tag})
+    setCurrentNote({ id: note.id, title: note.title, body: note.body , tag : note.tag, color:note.color,isPinned:note.isPinned})
   }
 
   const updateNote = (id, updatedNote) => {
@@ -49,13 +60,34 @@ function App() {
   }
 
   const allNotes = () =>{
-    setFiltering(false)
+    setFiltering(false);
+    setViewTrash(false);
     setCurrentTag('all')
   }
+
+  const pinNote =(id)=>{
+    setNotes((notes)=>
+    notes.map((note)=>{
+      if(note.id===id){
+        return {...note,isPinned:!note.isPinned}
+      }
+      return note;
+    })
+    )
+  }
+
+  const viewDeletedNotes=()=>{
+    setFiltering(false);
+    setViewTrash(true);
+  }
+
+
+
 
   // crud tag
 
   const filterTag = i =>{
+    setViewTrash(false);
     setFiltering(true)
     setCurrentTag(tags[i].name)
     setFilteredNotes(notes.filter(note=>note.tag === tags[i].name)); 
@@ -81,7 +113,7 @@ function App() {
 		setTags(tags.filter(tag => tag.id !== id))
 	}
 
-
+  
   
   
   // view
@@ -89,18 +121,19 @@ function App() {
     <div className="App">
       <div className="container">
           <div className="header">
-              <div className="header-item">
-                <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="" srcset="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x "/>
-                <span className="nav-brand">Keep</span>
-              </div>
+             <Header/>
           </div>
           <div className="flex-row">
               <div className='flex-column-secondary'>
                 <ViewTags tags={tags} 
                  filterTag={filterTag}
-                 currentTag={currentTag}
+                //  currentTag={currentTag}
                  editTag={editTag}
                  allNotes={allNotes}
+                 viewDeletedNotes={viewDeletedNotes}
+                
+                //  selectTag={selectTag}
+                
                  
                  />
                  {
@@ -113,7 +146,7 @@ function App() {
                </div>
               <div className="flex-column">
                 {
-                  editing?(
+                  editing&&!viewTrash?(
                     <div>
                       <EditNotesForm
                         tags={tags}
@@ -124,16 +157,45 @@ function App() {
                     </div>
                   ):(
                     <div>
-                      <AddNotesForm addNote={addNote} tags={tags}/>
+                      {!viewTrash&&(<AddNotesForm addNote={addNote} tags={tags}/>)}
                     </div>
                   )
                 }
-                <div>
-                  <ViewNotes notes={filtering ? filteredNotes : notes} 
+              
+                  {viewTrash&&(<div>
+                  <ViewNotes notes={deletedNotes} 
                   editNote={editNote} 
                   deleteNote={deleteNote} 
+                  pinNote={pinNote}
+                  /></div>)}
+
+                  {filtering&&(<div>
+                  <ViewNotes notes={filteredNotes} 
+                  editNote={editNote} 
+                  deleteNote={deleteNote} 
+                  pinNote={pinNote}
+                  /></div>)}
+
+
+                  {!filtering&&!viewTrash&&(<div>
+                  <ViewNotes notes={notes} 
+                  editNote={editNote} 
+                  deleteNote={deleteNote} 
+                  pinNote={pinNote}
+                  /></div>)}
+
+                 
+                 {/* {!filtering&&!viewTrash&&()} */}
+             
+                
+                {/* <div>
+                  <ViewNotes notes={ notes } 
+                  editNote={editNote} 
+                  deleteNote={deleteNote} 
+                  pinNote={pinNote}
                   />
-                </div> 
+                 
+                </div>  */}
             </div>
          </div>
       </div>
