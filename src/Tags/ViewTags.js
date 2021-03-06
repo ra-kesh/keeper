@@ -3,18 +3,38 @@ import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
-import{useState} from 'react';
+import{useState,useEffect} from 'react';
 
 const ViewTags = (props) => {
 
-   const [focus,setFocused] = useState(false);
 
-   function focusHandeller(){
-       setFocused(true);
+    const [tag,setTag] = useState(props.currentTag);
+
+    useEffect(()=>{
+        setTag(props.currentTag)
+    },[props])
+
+    // const [tags,setTags] = useState(props.tags);
+    const [focus,setFocused] = useState(false);
+//    const [select,setSelect] = useState('');
+
+    // useEffect(() => {
+    //    setTags(props.tags)
+    // }, [props])
+
+   function focusHandeller(id){  
+       setFocused(true)
    }
 
    function unFocusHandeller(){
        setFocused(false)
+   }
+
+
+
+   function clickHandeller(id){
+    setTag((tag.id===id)&&{...tag,selected:true})
+    console.log(tag)
    }
 
    return <div className="tag-container">
@@ -25,8 +45,9 @@ const ViewTags = (props) => {
         </div>
         { props.tags.length>0 ? (
                 props.tags.map((tag,i)=>((tag.name!=='')&&
-                    <div className="tag-div"                      
+                    <div className={tag.name===tag?"tag-div-active":"tag-div"}                 
                       key={tag.id} 
+                      onClick={()=>props.filterTag(i)}
                       onMouseEnter={focusHandeller}
                       onMouseLeave={unFocusHandeller}>
                         
@@ -37,7 +58,8 @@ const ViewTags = (props) => {
 
                            
                             <div className="tag-name"
-                            onClick={()=>props.filterTag(i)}>
+                            onClick={()=>clickHandeller(tag.id)}
+                            >
                             {tag.name}</div>                       
                     </div>
                 ))

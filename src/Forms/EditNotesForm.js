@@ -33,7 +33,7 @@ const EditNotesForm = (props) => {
 
     function submitHandeller(event){
         event.preventDefault()
-        if (!note.title || !note.body) {
+        if (!note.body) {
             return
         } 
         props.updateNote(note.id, note)
@@ -41,7 +41,7 @@ const EditNotesForm = (props) => {
     }
 
     return (
-      <form className="flex-form" onSubmit={submitHandeller} style={{backgroundColor:color}}>
+      <form className="flex-form" onSubmit={submitHandeller} style={{backgroundColor:color}} autoComplete="off">
         <input type="text" name="title" value={note.title} onChange={changeHandeller} className="form-items form-input"style={{backgroundColor:color}}/>
         <textarea type="text" name="body" value={note.body} onChange={changeHandeller} className="form-items form-textarea" rows={3}style={{backgroundColor:color}}/>
         
@@ -50,7 +50,7 @@ const EditNotesForm = (props) => {
                 <select name="tag" value={note.tag} onChange={changeHandeller} className="form-select">
                   <option hidden>Add Label..</option>
                   {props.tags.map((tag)=>(
-                    <option>{tag.name}</option>
+                    <option key={tag.id}>{tag.name}</option>
                   ))}
                   
                 </select>

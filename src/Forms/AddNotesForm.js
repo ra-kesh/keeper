@@ -49,7 +49,7 @@ const AddNotesForm = (props) => {
     }
 
     return (
-      <form className="flex-form" onSubmit={submitHandeller} style={{backgroundColor:color}}>
+      <form className="flex-form" onSubmit={submitHandeller} style={{backgroundColor:color}} autoComplete="off">
       
         {expanded &&(
           <input type="text" name="title" value={note.title} onChange={changeHandeller} className="form-items form-input" placeholder="Title"style={{backgroundColor:color}}/>)}

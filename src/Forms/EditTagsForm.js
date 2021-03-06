@@ -26,7 +26,7 @@ const EditTagsForm = (props) => {
 
     return (
 
-      <form onSubmit={submitHandeller}>
+      <form onSubmit={submitHandeller} autoComplete="off">
         <input type="text" name="name" value={tag.name} onChange={changeHandeller} placeholder="Update existing label.." className="tag-form edit-form"/>
         <span onClick={()=>props.deleteTag(tag.id)} className="tag-close"><DeleteOutlinedIcon fontSize="small"/></span>
         <button className="tag-close"><CloseOutlinedIcon fontSize="small"/></button>

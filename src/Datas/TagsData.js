@@ -1,15 +1,18 @@
 const tagsData = [
     {
       id: 1,
-      name: "tagone"
+      name: "tagone",
+      selected:false
     },
     {
       id: 2,
-      name: "tagtwo"
+      name: "tagtwo",
+      selected:false
     },
     {
       id: 3,
-      name: "tagThree"
+      name: "tagThree",
+      selected:false
     }
   ];
 
