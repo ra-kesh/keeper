@@ -23,7 +23,7 @@ const AddTagsForm = (props) => {
 
     return (
       <form onSubmit={submitHandeller} autoComplete="off">
-        <input type="text" name="name" value={tag.name} onChange={changeHandeller} placeholder="Add new label.." className="tag-form"/>
+        <input type="text" name="name" value={tag.name} onChange={changeHandeller} placeholder="Add New Label Here" className="tag-form"/>
       </form>
     )
   }

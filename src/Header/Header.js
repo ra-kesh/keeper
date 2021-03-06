@@ -43,13 +43,13 @@ const Header = (props)=>{
             <div className="header-item" >
                 <span className="nav-menu"><MenuOutlinedIcon/></span>
                 <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="" srcSet="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_2020q4_48dp.png 2x "/>
-                <span className="nav-brand">Keep</span>
+                <span className="nav-brand">{props.appName}</span>
              </div>
-             <div className="header-item">
+             <div className="header-item ">
                 <form onSubmit={submitHandeller} className="flex-form search-form" autoComplete="off">
-                <button className="search-icon"><SearchIcon/></button>
-                <input type="text" name="search" value={searchField} onChange={changeHandeller} className="search-input" placeholder="Search"/>
-                <button className="search-icon close-icon" onClick={clickHandeller}><CloseOutlinedIcon/></button>
+                    <button className="search-icon"><SearchIcon/></button>
+                    <input type="text" name="search" value={searchField} onChange={changeHandeller} className="search-input" placeholder="Search"/>
+                    <button className="search-icon close-icon" onClick={clickHandeller}><CloseOutlinedIcon/></button>
 
                 </form>
 

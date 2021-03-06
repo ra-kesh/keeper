@@ -4,10 +4,10 @@ import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 const EditTagsForm = (props) => {
 
-   const [ tag, setTag ] = useState(props.currentTag);
+   const [ tag, setTag ] = useState(props.selectTag);
 
     useEffect(() => {
-        setTag(props.currentTag)
+        setTag(props.selectTag)
       }, [props])
 	
     function changeHandeller (event){

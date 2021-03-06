@@ -52,12 +52,27 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .card-group{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: auto;
+}
+
+.group-text{
+  padding: 0;
+  margin: 0;
+  padding-left: 2rem;
+  color: #5f6368;
+  letter-spacing: .07272727em;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: .6875rem;
+  font-weight: 500;
+  line-height: 1rem;
+
 }
 
 .card{
@@ -129,19 +144,6 @@
    padding: .3rem;
  }
 
- 
- /* .icon-edit{
-  position: absolute;
-  bottom: 1rem;
-  right: 3rem;
- }
- .icon-delete{
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
- } */
-
-
  .tag-container{
    display: flex;
    flex-direction: column;
@@ -154,7 +156,18 @@
    padding-left: 3rem;
  }
 
- /* .tag-div-active{
+ .tag-div-active{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding-left: 3rem;
+   background-color: #feefc3;
+   border-top-right-radius: 50px;
+   border-bottom-right-radius: 50px;
+ }
+
+ 
+ /* .tag-div-active:hover{
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -194,6 +207,7 @@
    cursor: pointer;
  }
 
+
  .tag-form{
    border: 0;
    outline: 0;
@@ -201,6 +215,10 @@
    margin: 1rem 0;
    border-bottom: 1;
    cursor: pointer;
+ }
+
+ .tag-form:focus::placeholder{
+   background-color: transparent;
  }
  .tag-close{
    border: 0;
@@ -220,7 +238,7 @@
    border-bottom: 1px solid;
  }
  .tag-form:focus::placeholder{
-   background-color: transparent;
+   color: transparent;
  }
 
 
@@ -230,9 +248,9 @@
   flex-direction: column;
   border-radius: 5px;
   box-shadow: 0 1px 7px rgb(128, 128, 128);
-  padding: 1rem;
+  padding: .8rem;
   margin: auto;
-  max-width: 40vw;
+  max-width: 45vw;
   position: relative;
   justify-content: space-between;
   margin-top: 2rem;
@@ -343,10 +361,10 @@
   flex-direction: row;
   margin: 0;
   width: 100vw;
-  background-color:rgba(0,0,0, .1 );
+  background-color:#F3F4F6;
   box-shadow: none;
   justify-content: flex-start;
-  padding: .8rem;
+  padding: .7rem;
 }
 .search-form:hover{
   width: 100vw;
@@ -378,5 +396,29 @@
 .search-form:hover .close-icon{
   visibility: visible;
 }
+/* 
+.nonote-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ */
+ .no-cards{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  color: #80868b;
+  font-size: 8rem;
+  opacity: 80%;
+}
 
+.no-note{
+  height: 50vh;
+}
 
+.nonote-text{
+  font-size: 1.5rem;
+}

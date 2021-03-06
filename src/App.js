@@ -19,6 +19,7 @@ function App() {
   
   const initialState = { id: null, title: '', body: '' ,tag:''}
   const initialTagState = {id:null,name:""}
+  const [appName,setAppName] = useState('Keep')
 
   // state for notes
   const [notes, setNotes] = useState(notesData);
@@ -34,7 +35,9 @@ function App() {
   // state for tags
   const [tags,setTags] = useState(tagsData);
   const [currentTag,setCurrentTag] = useState(initialTagState);
+  const [selectTag,setSelectTag]=useState(initialTagState);
   const [tagEditing,setTagEditing] = useState(false);
+  
 
   // crud for note
 
@@ -66,6 +69,7 @@ function App() {
     setFiltering(false);
     setViewTrash(false);
     setCurrentTag('all')
+    setAppName('Keep')
   }
 
   const pinNote =(id)=>{
@@ -92,6 +96,8 @@ function App() {
   const viewDeletedNotes=()=>{
     setFiltering(false);
     setViewTrash(true);
+    setAppName('Trash');
+    setCurrentTag('trash')
   }
 
   // crud for tag
@@ -101,6 +107,7 @@ function App() {
     setViewTrash(false);
     setFiltering(true)
     setCurrentTag(tags[i].name)
+    setAppName(tags[i].name)
     setFilteredNotes(notes.filter(note=>note.tag === tags[i].name)); 
   }
 
@@ -111,7 +118,7 @@ function App() {
 
   const editTag =tag=>{
     setTagEditing(true)
-    setCurrentTag({ id: tag.id, name: tag.name,selected:tag.selected})
+    setSelectTag({ id: tag.id, name: tag.name})
   }
 
   const updateTag = (id, updatedTag) => {
@@ -124,12 +131,17 @@ function App() {
 		setTags(tags.filter(tag => tag.id !== id))
 	}
 
+ 
+
+  // console.log(currentTag);
+
   // view
   return (
     <div className="App">
       <div className="container">
           <div className="header">
-             <Header      
+             <Header   
+             appName={appName}   
              setSearching={setSearching}
              setSearchedNotes={setSearchedNotes}
              deletedNotes={deletedNotes}
@@ -142,15 +154,17 @@ function App() {
                  editTag={editTag}
                  allNotes={allNotes}
                  viewDeletedNotes={viewDeletedNotes}  
-                 currentTag={currentTag}           
+                 currentTag={currentTag}  
+                 
                  />
                  {
                  tagEditing ?
                  <EditTagsForm currentTag={currentTag} 
+                 selectTag={selectTag} 
                  updateTag={updateTag} deleteTag={deleteTag} /> :
                  <AddTagsForm addTag={addTag}/>
                  }
-                 
+                
                </div>
               <div className="flex-column">
                 {

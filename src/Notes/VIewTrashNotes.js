@@ -2,30 +2,25 @@ import React from 'react'
 import {useState,useEffect} from "react"
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import RestoreFromTrashOutlinedIcon from '@material-ui/icons/RestoreFromTrashOutlined';
-
-
+import DeleteSweepOutlinedIcon from '@material-ui/icons/DeleteSweepOutlined';
 
 
 export default function VIewTrashNotes({notes,trashDelete,trashRestore}) {
 
     const [noteList, setNoteList] = useState(notes);
-    // const [pinnedList,setPinnedList] = useState([]);
-    // const [otherList,setOtherList] = useState([]);
-  
-
 
     useEffect(() => {
         setNoteList(notes)
-        // setPinnedList(notes.filter(note=>note.isPinned))
-        // setOtherList(notes.filter(note=>!note.isPinned))
       }, [notes])
-
-   
+  
     return (
+        <>
         <div className="cards">
+        {noteList.length>0&&(<h2>{noteList.length} Notes Found..</h2>)}
+        
          <div className="card-group">
                 
-                {noteList.length>0 ? (
+                {noteList.length>0 &&(
                         noteList.map((note)=>(
                           <div className="card" key={note.id} style={{backgroundColor:note.color}} >
                                 <span className="card-title">{note.title}</span>
@@ -48,15 +43,17 @@ export default function VIewTrashNotes({notes,trashDelete,trashRestore}) {
                             </div>
                         
                         ))
-                    ):(
-                        <div className="cards">
-                            {!noteList.length&&(<h2>No notes</h2>)}
-                        </div>
                     )
             
                 }
-        </div>
+          </div>
             
         </div>
+        
+        {!noteList.length&&(<div className="no-cards">
+        <div className="nonote-img"><DeleteSweepOutlinedIcon fontSize="inherit"/></div>
+        <div className="nonote-text">No Notes in Trash</div>
+        </div>)}
+        </>
     )
 }

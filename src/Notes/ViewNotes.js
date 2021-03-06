@@ -2,6 +2,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import TurnedInNotOutlinedIcon from '@material-ui/icons/TurnedInNotOutlined';
 import TurnedInOutlinedIcon from '@material-ui/icons/TurnedInOutlined';
+import WbIncandescentOutlinedIcon from '@material-ui/icons/WbIncandescentOutlined';
 import {useState,useEffect} from "react"
 
 
@@ -31,7 +32,7 @@ const ViewNotes = ({notes,editNote,deleteNote,pinNote,archiveNote}) => {
 
             <div className="card-group">
                 
-                { !pinnedList.length&&noteList.length>0 ? (
+                { !pinnedList.length&&noteList.length>0 && (
                         noteList.map((note)=>(
                           <div className="card" key={note.id} style={{backgroundColor:note.color}} >
                                 <span className="card-title">{note.title}</span>
@@ -56,15 +57,13 @@ const ViewNotes = ({notes,editNote,deleteNote,pinNote,archiveNote}) => {
                             </div>
                         
                         ))
-                    ):(
-                        <div className="cards">
-                            {!noteList.length&&(<h2>No notes</h2>)}
-                        </div>
                     )
             
                 }
         </div>
-
+        <div className="card-group group-text">
+        {pinnedList.length>0&&(<span>PINNED</span>)}
+        </div>
         <div className="card-group">
             {pinnedList.length>0&&(
                 pinnedList.map((note)=>(
@@ -98,8 +97,9 @@ const ViewNotes = ({notes,editNote,deleteNote,pinNote,archiveNote}) => {
             }
 
         </div>
-        
-       {pinnedList.length>0&&noteList.length>1&&(<p>others</p>)}
+        <div className="card-group group-text">
+           {pinnedList.length>0&&otherList.length>0&&(<span>OTHERS</span>)}
+        </div>
        <div className="card-group">
             {pinnedList.length>0&&noteList.length>0&&(
                 otherList.map((note)=>(
@@ -134,51 +134,14 @@ const ViewNotes = ({notes,editNote,deleteNote,pinNote,archiveNote}) => {
        </div>
     
   
-            </div>
+    </div>
+    
+    {!noteList.length&&( <div className="no-cards no-note">
+            <div className="nonote-img"><WbIncandescentOutlinedIcon fontSize="inherit"/></div>
+            <div className="nonote-text">Notes you add appear here..</div>
+    </div>)}
+
     </>
 }
-
-
-// const ViewNotes = (props) => {
-
-
-//    return <div className="cards">
-       
-//         { props.notes.length>0 ? (
-//                 props.notes.map((note)=>(
-            
-//                         <div className="card" key={note.id} style={{backgroundColor:note.color}}>
-//                             <span className="card-title">{note.title}</span>
-//                             <p className="card-body">{note.body}</p>
-//                             <p className="card-body">{note.isPinned?"true":"false"}</p>
-                    
-//                             <div className="card-row">
-//                                 {(note.tag !==null)&&(<span className="card-tag">{note.tag}</span>)}
-                                
-//                                 <div>
-//                                     <span className="card-icon" onClick={()=>
-//                                     props.editNote(note)}
-//                                     ><EditOutlinedIcon fontSize="small"/></span>
-
-//                                     <span onClick={() => 
-//                                     props.deleteNote(note.id,note)}
-//                                     className="card-icon"
-//                                     ><DeleteOutlineOutlinedIcon fontSize="small"/></span>
-//                                 </div>
-                            
-//                             </div>
-
-//                       </div>
-                
-//                 ))
-//             ):(
-//                 <div className="no-cards">
-//                     <h2>No notes</h2>
-//                 </div>
-//             )
-       
-//         }
-//     </div>
-// }
 
 export default ViewNotes;
